@@ -6,7 +6,6 @@ import ir.bigz.spring.codecoverage.jacoco.controller.ItemController;
 import ir.bigz.spring.codecoverage.jacoco.service.ItemService;
 import ir.bigz.spring.codecoverage.jacoco.view.ItemRequest;
 import ir.bigz.spring.codecoverage.jacoco.view.ItemResponse;
-import net.minidev.json.JSONUtil;
 import org.junit.jupiter.api.*;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -31,7 +30,7 @@ public class ItemControllerTest {
     ItemService itemService;
 
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mvc;
 
     @Test
     public void add_item_into_database_mock() throws Exception {
@@ -49,7 +48,7 @@ public class ItemControllerTest {
         ItemRequest itemRequest = new ItemRequest("sony IV", "mobile", 10, new BigDecimal("10.000"));
 
         //then
-        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post("/api/item/v1")
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post("/api/item/v1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonUtils.toJson(itemRequest)))
                 .andExpect(MockMvcResultMatchers.status().is(201))

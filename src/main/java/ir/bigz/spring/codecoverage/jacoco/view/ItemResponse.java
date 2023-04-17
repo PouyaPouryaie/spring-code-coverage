@@ -30,6 +30,9 @@ public class ItemResponse {
         return price;
     }
 
+    public ItemResponse() {
+    }
+
     public static Builder builder() {
         return new Builder();
     }
