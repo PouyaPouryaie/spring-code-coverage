@@ -6,6 +6,9 @@ import ir.bigz.spring.codecoverage.jacoco.view.ItemRequest;
 import ir.bigz.spring.codecoverage.jacoco.view.ItemResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ItemService {
 
@@ -28,6 +31,20 @@ public class ItemService {
 
         itemDto.save(item);
 
+        System.out.println("##### " + item);
+
+        return convertToItemReponse(item);
+    }
+
+    public List<ItemResponse> getAllItem(){
+
+        return itemDto.findAll()
+                .stream()
+                .map(this::convertToItemReponse)
+                .collect(Collectors.toList());
+    }
+
+    private ItemResponse convertToItemReponse(Item item){
         return ItemResponse.builder()
                 .id(item.getId())
                 .price(item.getPrice())

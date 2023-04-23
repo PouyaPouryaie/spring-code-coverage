@@ -10,6 +10,7 @@ import org.junit.jupiter.api.*;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -22,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @WebMvcTest(value = {ItemController.class})
+@AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class ItemControllerTest {
@@ -39,13 +41,13 @@ public class ItemControllerTest {
         //given
         ItemResponse itemResponse = ItemResponse.builder()
                 .id(UUID.randomUUID().toString())
-                .itemName("sony IV")
+                .itemName("Item Mobile")
                 .category("mobile")
                 .quantity(10)
                 .price(new BigDecimal("10.000")).build();
         BDDMockito.given(this.itemService.createItem(Mockito.any())).willReturn(itemResponse);
 
-        ItemRequest itemRequest = new ItemRequest("sony IV", "mobile", 10, new BigDecimal("10.000"));
+        ItemRequest itemRequest = new ItemRequest("Item Mobile", "mobile", 10, new BigDecimal("10.000"));
 
         //then
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post("/api/item/v1")

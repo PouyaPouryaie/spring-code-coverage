@@ -18,3 +18,7 @@ This Demo has developed to show features and abilities of Code coverage tools In
    1. to know how well our tests actually test our code
    2. to know whether we have enough testing in place
    3. to maintain the test quality over the lifecycle of the project
+
+## Some reference about test at Spring boot:
+
+[Testing in Spring boot](https://www.baeldung.com/spring-boot-testing)

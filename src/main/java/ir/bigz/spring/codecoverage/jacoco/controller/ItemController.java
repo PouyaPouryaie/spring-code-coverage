@@ -21,4 +21,9 @@ public class ItemController {
     public ResponseEntity<?> createItem(@RequestBody ItemRequest itemRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(itemService.createItem(itemRequest));
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllItem(){
+        return ResponseEntity.status(HttpStatus.OK).body(itemService.getAllItem());
+    }
 }

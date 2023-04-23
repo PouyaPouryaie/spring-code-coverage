@@ -13,7 +13,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestPropertySource(locations = {"classpath:application.yml"})
@@ -39,7 +38,7 @@ public class ItemServiceTest {
     public void add_item_into_database(){
 
         //given
-        ItemRequest itemRequest = new ItemRequest("sony IV", "mobile", 10, new BigDecimal("10.000"));
+        ItemRequest itemRequest = new ItemRequest("Item Mobile", "mobile", 10, new BigDecimal("10.000"));
 
         //when
         ItemResponse item = itemService.createItem(itemRequest);
